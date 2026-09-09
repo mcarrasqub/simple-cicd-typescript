@@ -18,35 +18,40 @@
 
   <p>Result: <strong id="result">—</strong></p>
 
-  <!-- Link to the compiled JS (compile sum.ts with: tsc sum.ts) -->
+  <!-- Link to compiled JS scripts -->
   <script src="sum.js"></script>
   <script src="subtract.js"></script>
   <script src="multiply.js"></script>
   <script src="divide.js"></script>
   <script>
+    function getNumbers() {
+      var val1 = document.getElementById('num1').value;
+      var val2 = document.getElementById('num2').value;
+      return {
+        a: val1 === '' ? 0 : Number(val1),
+        b: val2 === '' ? 0 : Number(val2)
+      };
+    }
+
     document.getElementById('btnSum').addEventListener('click', function () {
-      var a = Number(document.getElementById('num1').value) || 0;
-      var b = Number(document.getElementById('num2').value) || 0;
-      document.getElementById('result').textContent = sum(a, b);
+      var nums = getNumbers();
+      document.getElementById('result').textContent = window.sum(nums.a, nums.b);
     });
 
     document.getElementById('btnSubtract').addEventListener('click', function () {
-      var a = Number(document.getElementById('num1').value) || 0;
-      var b = Number(document.getElementById('num2').value) || 0;
-      document.getElementById('result').textContent = subtract(a, b);
+      var nums = getNumbers();
+      document.getElementById('result').textContent = window.subtract(nums.a, nums.b);
     });
 
     document.getElementById('btnMultiply').addEventListener('click', function () {
-      var a = Number(document.getElementById('num1').value) || 0;
-      var b = Number(document.getElementById('num2').value) || 0;
-      document.getElementById('result').textContent = multiply(a, b);
+      var nums = getNumbers();
+      document.getElementById('result').textContent = window.multiply(nums.a, nums.b);
     });
 
     document.getElementById('btnDivide').addEventListener('click', function () {
-      var a = Number(document.getElementById('num1').value) || 0;
-      var b = Number(document.getElementById('num2').value) || 0;
+      var nums = getNumbers();
       try {
-        document.getElementById('result').textContent = divide(a, b);
+        document.getElementById('result').textContent = window.divide(nums.a, nums.b);
       } catch (error) {
         document.getElementById('result').textContent = error.message;
       }
