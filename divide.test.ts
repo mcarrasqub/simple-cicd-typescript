@@ -1,5 +1,6 @@
 /**
  * Unit tests for divide()
+ * Loads the compiled divide.js so window.divide is available (same as in the browser).
  */
 declare global {
   interface Window {
@@ -8,26 +9,30 @@ declare global {
 }
 
 beforeAll(() => {
+  // Load the built script that attaches divide to window (non-module)
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   require("./divide.js");
 });
 
 describe("divide", () => {
-  it("divide dos enteros positivos", () => {
-    expect(window.divide(10, 2)).toBe(5);
+  it("divides two positive numbers", () => {
+    expect(window.divide(6, 3)).toBe(2);
+    expect(window.divide(5, 2)).toBe(2.5);
   });
 
-  it("divide números negativos", () => {
-    expect(window.divide(-6, 3)).toBe(-2);
-    expect(window.divide(-12, -4)).toBe(3);
-  });
-
-  it("divide cero entre un número", () => {
+  it("divides with zero as numerator", () => {
     expect(window.divide(0, 5)).toBe(0);
   });
 
-  it("caso límite de división por cero", () => {
-    expect(() => window.divide(10, 0)).toThrow("Division by zero is not allowed.");
+  it("divides negative numbers", () => {
+    expect(window.divide(-6, 3)).toBe(-2);
+    expect(window.divide(6, -3)).toBe(-2);
+    expect(window.divide(-6, -3)).toBe(2);
+  });
+
+  it("throws an error on division by zero", () => {
+    expect(() => window.divide(6, 0)).toThrow("Division by zero is not allowed");
+    expect(() => window.divide(0, 0)).toThrow("Division by zero is not allowed");
   });
 });
 

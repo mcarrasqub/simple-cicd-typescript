@@ -1,5 +1,5 @@
 /**
- * Returns the difference between two numbers.
+ * Returns the subtract of two numbers.
  */
 function subtract(a: number, b: number): number {
   return a - b;

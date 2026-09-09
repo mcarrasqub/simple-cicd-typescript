@@ -1,5 +1,6 @@
 /**
  * Unit tests for multiply()
+ * Loads the compiled multiply.js so window.multiply is available (same as in the browser).
  */
 declare global {
   interface Window {
@@ -8,23 +9,27 @@ declare global {
 }
 
 beforeAll(() => {
+  // Load the built script that attaches multiply to window (non-module)
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   require("./multiply.js");
 });
 
 describe("multiply", () => {
-  it("multiplica dos enteros positivos", () => {
-    expect(window.multiply(3, 4)).toBe(12);
+  it("multiplies two positive numbers", () => {
+    expect(window.multiply(2, 3)).toBe(6);
+    expect(window.multiply(7, 8)).toBe(56);
   });
 
-  it("multiplica números negativos", () => {
-    expect(window.multiply(-2, 5)).toBe(-10);
-    expect(window.multiply(-3, -4)).toBe(12);
-  });
-
-  it("multiplica con cero", () => {
-    expect(window.multiply(7, 0)).toBe(0);
+  it("multiplies with zero", () => {
+    expect(window.multiply(5, 0)).toBe(0);
+    expect(window.multiply(0, 5)).toBe(0);
     expect(window.multiply(0, 0)).toBe(0);
+  });
+
+  it("multiplies negative numbers", () => {
+    expect(window.multiply(-2, 3)).toBe(-6);
+    expect(window.multiply(2, -3)).toBe(-6);
+    expect(window.multiply(-2, -3)).toBe(6);
   });
 });
 

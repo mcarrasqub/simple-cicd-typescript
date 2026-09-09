@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sum Two Numbers :) </title>
+  <title>Basic Operations :) </title>
 </head>
 <body>
-  <h1>Sum Two Int Numbers =) </h1>
+  <h1>Basic Operations Calculator =) </h1>
   <input type="number" id="num1" placeholder="First number" />
   <input type="number" id="num2" placeholder="Second number" />
 
@@ -18,40 +18,35 @@
 
   <p>Result: <strong id="result">—</strong></p>
 
-  <!-- Link to compiled JS scripts -->
+  <!-- Link to the compiled JS (compile TS files with: npm run build) -->
   <script src="sum.js"></script>
   <script src="subtract.js"></script>
   <script src="multiply.js"></script>
   <script src="divide.js"></script>
   <script>
-    function getNumbers() {
-      var val1 = document.getElementById('num1').value;
-      var val2 = document.getElementById('num2').value;
-      return {
-        a: val1 === '' ? 0 : Number(val1),
-        b: val2 === '' ? 0 : Number(val2)
-      };
-    }
-
     document.getElementById('btnSum').addEventListener('click', function () {
-      var nums = getNumbers();
-      document.getElementById('result').textContent = window.sum(nums.a, nums.b);
+      var a = Number(document.getElementById('num1').value) || 0;
+      var b = Number(document.getElementById('num2').value) || 0;
+      document.getElementById('result').textContent = window.sum(a, b);
     });
 
     document.getElementById('btnSubtract').addEventListener('click', function () {
-      var nums = getNumbers();
-      document.getElementById('result').textContent = window.subtract(nums.a, nums.b);
+      var a = Number(document.getElementById('num1').value) || 0;
+      var b = Number(document.getElementById('num2').value) || 0;
+      document.getElementById('result').textContent = window.subtract(a, b);
     });
 
     document.getElementById('btnMultiply').addEventListener('click', function () {
-      var nums = getNumbers();
-      document.getElementById('result').textContent = window.multiply(nums.a, nums.b);
+      var a = Number(document.getElementById('num1').value) || 0;
+      var b = Number(document.getElementById('num2').value) || 0;
+      document.getElementById('result').textContent = window.multiply(a, b);
     });
 
     document.getElementById('btnDivide').addEventListener('click', function () {
-      var nums = getNumbers();
+      var a = Number(document.getElementById('num1').value) || 0;
+      var b = Number(document.getElementById('num2').value) || 0;
       try {
-        document.getElementById('result').textContent = window.divide(nums.a, nums.b);
+        document.getElementById('result').textContent = window.divide(a, b);
       } catch (error) {
         document.getElementById('result').textContent = error.message;
       }
