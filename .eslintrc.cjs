@@ -14,6 +14,7 @@ module.exports = {
   ignorePatterns: ["node_modules/", "sum.js"],
   rules: {
     "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-require-imports": "off",
   },
   overrides: [
     {
